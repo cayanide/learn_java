@@ -1,0 +1,50 @@
+public class SecondLargest {
+
+    public static int[] getNumbers() {
+        return new int[] {
+            100,
+            56,
+            78,
+            54,
+            45,
+            67,
+            23,
+            43,
+            98,
+            32,
+            85,
+            14,
+            18,
+            17,
+            87,
+            67,
+            69,
+            88,
+            1,
+            99,
+            101,
+            103,
+            77,
+            12,
+            10,
+        };
+    }
+
+    public static int getSecondLargest(int[] numbers) {
+        int largest = 0;
+        int secondLargest = 0;
+        for (int i = 0; i < numbers.length; i++) {
+            if (numbers[i] > largest) {
+                secondLargest = largest;
+                largest = numbers[i];
+            }
+        }
+        return secondLargest;
+    }
+
+    public static void main(String[] args) {
+        int[] numbers = getNumbers();
+        int secondLargest = getSecondLargest(numbers);
+        System.out.println("Second Largest Number: " + secondLargest);
+    }
+}

@@ -1,0 +1,62 @@
+import javax.swing.plaf.basic.BasicBorders.MarginBorder;
+
+public class BinarySearch {
+
+    public static int[] getNumbers() {
+        return new int[] {
+            100,
+            56,
+            78,
+            54,
+            45,
+            67,
+            23,
+            43,
+            98,
+            32,
+            85,
+            14,
+            18,
+            17,
+            87,
+            67,
+            69,
+            88,
+            1,
+            99,
+            101,
+            103,
+            77,
+            12,
+            10,
+        };
+    }
+
+    public static int binarySearch(int[] numbers, int Target) {
+        int left = 0;
+        int right = numbers.length - 1;
+        while (left <= right) {
+            int mid = (left + right) / 2;
+            if (numbers[mid] == Target) {
+                return mid;
+            } else if (numbers[mid] < Target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        int[] numbers = getNumbers();
+        int target = 69;
+        int result = binarySearch(numbers, target);
+        if (result != -1) {
+            System.out.println("Element found at index " + result);
+        } else {
+            System.out.println("Element not found");
+        }
+    }
+}

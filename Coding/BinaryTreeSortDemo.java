@@ -1,0 +1,63 @@
+import java.util.Random;
+
+class BinaryTreeSortDemo {
+
+    static class Node {
+
+        int data;
+        Node left, right;
+
+        Node(int val) {
+            data = val;
+        }
+    }
+
+    static class BST {
+
+        Node root;
+
+        void insert(int val) {
+            root = insertRec(root, val);
+        }
+
+        Node insertRec(Node root, int val) {
+            if (root == null) return new Node(val);
+            if (val < root.data) root.left = insertRec(root.left, val);
+            else root.right = insertRec(root.right, val);
+            return root;
+        }
+
+        void inOrder(Node node) {
+            if (node != null) {
+                inOrder(node.left);
+                System.out.print(node.data + " ");
+                inOrder(node.right);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        BST tree = new BST();
+        Random rand = new Random();
+
+        System.out.println("Inserting 100 random elements into the BST...");
+
+        for (int i = 0; i < 100; i++) {
+            int num = rand.nextInt(1000) + 1; // 1 to 1000
+            tree.insert(num);
+        }
+
+        System.out.println("\nSorted (In-order Traversal):");
+        tree.inOrder(tree.root);
+        System.out.println();
+
+        // Runtime stats
+        Runtime runtime = Runtime.getRuntime();
+        runtime.gc();
+        long usedMemory =
+            (runtime.totalMemory() - runtime.freeMemory()) / (1024 * 1024);
+        long totalMemory = runtime.totalMemory() / (1024 * 1024);
+        System.out.println("Used Heap: " + usedMemory + " MB");
+        System.out.println("Total Memory: " + totalMemory + " MB");
+    }
+}

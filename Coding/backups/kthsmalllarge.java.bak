@@ -1,0 +1,65 @@
+public class kthsmalllarge {
+
+    public static int[] getNumbers() {
+        return new int[] {
+            100,
+            56,
+            78,
+            54,
+            45,
+            67,
+            23,
+            43,
+            98,
+            32,
+            85,
+            14,
+            18,
+            17,
+            87,
+            67,
+            69,
+            88,
+            1,
+            99,
+            101,
+            103,
+            77,
+            12,
+            10,
+        };
+    }
+
+    public static int[] sort(int[] numbers) {
+        int n = numbers.length;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (numbers[i] < numbers[j]) {
+                    int temp = numbers[i];
+                    numbers[i] = numbers[j];
+                    numbers[j] = temp;
+                }
+            }
+        }
+        return numbers;
+    }
+
+    public static int[] getSortedNumbers() {
+        return sort(getNumbers());
+    }
+
+    public static int getKthSmallest(int k) {
+        int[] numbers = getSortedNumbers();
+        return numbers[k - 1];
+    }
+
+    public static int getKthLargest(int k) {
+        int[] numbers = getSortedNumbers();
+        return numbers[numbers.length - k];
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Kth smallest number: " + getKthSmallest(5));
+        System.out.println("Kth largest number: " + getKthLargest(5));
+    }
+}

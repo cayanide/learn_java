@@ -1,0 +1,25 @@
+import java.util.Arrays;
+
+public class palindromeArray {
+
+    public static int[] getNumbers() {
+        return new int[] { 2, 4, 5, 4, 2 };
+    }
+
+    public static boolean isPalindrome(int[] numbers) {
+        int left = 0;
+        int right = numbers.length - 1;
+        while (left < right) {
+            if (numbers[left] != numbers[right]) return false;
+            left++;
+            right--;
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        int[] numbers = getNumbers();
+        System.out.println("Numbers: " + Arrays.toString(numbers));
+        System.out.println("Is Palindrome: " + isPalindrome(numbers));
+    }
+}

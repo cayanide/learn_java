@@ -1,0 +1,32 @@
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+public class RemoveDuplicatesArray {
+
+    public static int[] getNumbers() {
+        return new int[] { 2, 4, 5, 4, 2 };
+    }
+
+    public static int[] removeDuplicates(int[] numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>();
+        for (int number : numbers) {
+            uniqueNumbers.add(number);
+        }
+        return uniqueNumbers.stream().mapToInt(Integer::intValue).toArray();
+    }
+
+    public static void main(String[] args) {
+        int[] numbers = getNumbers();
+        int[] uniqueNumbers = removeDuplicates(numbers);
+        System.out.println(Arrays.toString(uniqueNumbers));
+        Runtime runtime = Runtime.getRuntime();
+        runtime.gc();
+        long usedMemory = (runtime.totalMemory() - runtime.freeMemory()) / (1024 * 1024);
+        long totalMemory = runtime.totalMemory() / (1024 * 1024);
+        // BEGIN_HEAP_PRINT
+        System.out.println("Used Heap: " + usedMemory + " MB");
+        System.out.println("Total Memory: " + totalMemory + " MB");
+        // END_HEAP_PRINT
+    }
+}
